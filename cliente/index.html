@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  rel="stylesheet" href="css/bootstrap.min.css">
+
+    <link  rel="stylesheet" href="css/estilos.css">
+    <script src="js/script.js" type="module" defer></script>
+    <title>Primer Parcial</title>
+</head>
+<body>
+    <header>
+       <img src="imagenes/logo.png" id="logo"> 
+       <nav id="nav">
+        <ul>
+            <li><a id="home">Home</a></li>
+            <li><a id="personajes">Personajes</a></li>
+            <li><a>Blog</a></li>
+            <li><a>Contacto</a></li>
+        </ul>
+    </nav>
+
+    </header>
+    <form id="formularioAlta">  
+        <fieldset id="FieldAlta">
+            <legend>
+                <label>Informacion del superheroe</label>
+            </legend>
+            <label >Nombre</label>
+            <input type="text" id="txtTitulo" placeholder="  Nombre">
+            
+            <fieldset id="FieldTransaccion">
+                <div class="container">
+                <legend class="iconoEditorial" id="legendaTrans" >Editorial</legend>
+                <div class="row">
+                    <div class="col-3">
+                <label for="rTransaccionVenta" >DC</label>
+                <input type="radio" name="transaccion" value="dc" checked id="rTransaccionVenta" >
+            </div><div class="col-3">
+                <label for="rTransaccionAlquiler" >Marvel</label>
+                <input type="radio" name="transaccion" value="marvel"  id="rTransaccionAlquiler">
+            </div>
+            </div>
+            </div>
+            </fieldset>
+
+            <label class="iconoAlias" >Alias</label>
+            <input type="text" id="txtDescripcion" placeholder="  Alias">
+
+            <label class="iconoArma" >Arma</label>
+            <select name="Arma" id="arma"></select>
+
+            <label class="iconoFuerza">Fuerza</label>
+            <input type="range" id="fuerza"  min="0" max="100" step="1">
+        </fieldset>
+    <div id="botones">
+       
+        <input class="iconoGuardar" type="submit" id="btnGuardar" value="Guardar"  >
+   
+        <!-- <input type="button" id="btnBorrar" value="Borrar" disabled="true"> -->
+        <input type="button" id="btnCancelar" value="Cancelar" disabled="true">
+    </div>
+    </form>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-1">
+            <label >Filtar</label>
+            <select name="Filtro" id="Filtro"></select>
+        </div>
+        <div class="col-lg-1">
+            <label >Promedio</label>
+            <input type="text" placeholder="0" id="promedio" readonly >
+        </div>
+        </div>
+    </div>
+    <div class="container" id="mapeado">
+        <div class="row">
+            <div class="col">
+                <label >Nombre</label>
+                <input type="checkbox"  checked id="chkTitulo" name="nombre">
+            </div>
+            <div class="col">
+                <label >Alias</label>
+                <input type="checkbox"  checked id="chkTransaccion" name="alias">
+            </div>
+            <div class="col">
+                <label >Editorial</label>
+                <input  type="checkbox" checked id="chkDescripcion" name="editorial">
+            </div>
+            <div class="col">
+                <label >Fuerza</label>
+                <input  type="checkbox" checked id="chkPrecio" name="fuerza">
+            </div>
+            <div class="col">
+                <label >Arma</label>
+                <input type="checkbox"  checked id="chkBaños" name="arma">
+            </div>
+        </div>
+    </div>
+        <div class="container"  id="divLoader">
+            <img src="./imagenes/super.gif" class="oculto" id="loader">
+        </div>
+
+        <div class="container" id="selTabla"></div>
+   <footer class="bg-dark text-center text-white">
+    <nav >
+        <ul>
+            <li><a id="homefoot">Home</a></li>
+            <li><a id="personajesfoot">Personajes</a></li>
+            <li><a >Blog</a></li>
+            <li><a>Contacto</a></li>
+        </ul>
+    </nav>
+   </footer>
+</body>
+</html>

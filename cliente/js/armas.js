@@ -1,0 +1,1 @@
+export const armas = ["Armadura", "Espada", "Martillo", "Escudo", "Arma de fuego", "Flechas"]

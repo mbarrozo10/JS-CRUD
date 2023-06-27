@@ -1,0 +1,257 @@
+
+#logo {
+    width: 100px;
+    height: 100px;
+}
+ul{
+    display: flex;
+    list-style: none;
+    justify-content: center;
+}
+nav ul li{
+    padding: 10px 20px;
+}
+
+ul a{
+    
+    text-decoration: none !important;
+    color: white;
+}
+nav ul li:hover{
+    background-color: #242424;
+    transition: 0.9s;
+}
+header{
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    background-image: url("../imagenes/fondo.jpg");
+    background-size: cover;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+/* footer{
+    background-color: white;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 100px;
+    background-image: url("../imagenes/fondo.jpg");
+    background-size: cover;
+    position: relative;
+    margin-top: -100;
+} */
+@media only screen and (max-width: 768px)
+{
+    nav ul{
+        height: 200px;
+        flex-direction: column;
+        text-align: center;
+    }
+    header{
+        height: 200px;
+    }
+    footer{
+        height: 200px;
+    }
+}
+
+
+ #txtId,#txtTitulo,#txtDescripcion,#txtCantBaños,#txtCantAutos,#txtDormitorios, #arma, #fuerza{
+    margin-bottom: 10px;
+    border-radius: 8px;
+    margin-right: 20px;
+    margin-left: 20px;
+} 
+
+#FieldTransaccion{
+    color: white;
+    border: none ;
+    padding: 0;
+    display: flex ;
+    flex-direction: row;
+    align-items: center;
+}
+#rTransaccionVenta, #rTransaccionAlquiler{
+    display: flex ;
+    flex-direction: row;
+    margin-right: 20px;
+}
+
+#legendaTrans{
+    margin-bottom: 10px;
+}
+
+#formularioAlta, #selTabla{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content {
+    min-height: calc(100% - 50px); /* Resta la altura del footer */
+  padding-bottom: 50px; /* Altura del footer */
+  }
+
+body{
+    height: 100%;
+    margin: 0;
+    background-color: #242424;
+    background-image: url("../imagenes/fondo_body.png");
+    background-size: cover;
+}
+
+#FieldAlta{
+    margin-bottom: 10px;
+    border-radius: 20px;
+    background-image: url("../imagenes/fondo.jpg");
+    background-size: cover;
+    
+}
+
+
+
+h1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+
+
+table{
+    border-collapse: collapse ;
+    width: 80%;
+    margin: 0 auto;
+    
+}
+
+#btnGuardar,#btnMod,#btnBorrar, #btnCancelar{
+    display: inline-block;
+    flex-direction: column;
+    align-items: center;
+    min-width: 70px;
+    text-align:center;
+    font-weight: 600;
+    color:white;
+    padding-top:5px;
+    padding-bottom:5px;
+    background-color:#276d9c;
+    border-color: #d8d8d8;
+    border-width: 1px;
+    border-style: solid;
+    border-radius:20px;
+}
+
+#btnGuardar{
+    margin-left: -5px;
+}
+/* thead{
+    background-color: rgb(77, 14, 14);
+}
+th, td{
+    border: 1px solid white ;
+    width:100px;
+    height:28px;
+    line-height:28px;
+    padding:0 8px;
+    color: white;
+}
+td{
+    background-color: #276d9c;
+} */
+
+
+/* 
+
+#selTabla{
+    display: none;
+    text-align: center;
+} */
+
+.Fichas{
+    background-color: rgb(110, 21, 21) ;
+    width: 200ox;
+    margin-bottom: 10px;
+}
+
+.iconoGuardar{
+    background-image: url('../imagenes/guardar.svg');
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: 20px 20px;
+  margin-left: 20px;
+  padding-left: 24px;
+}
+.iconoAlias{
+    background-image: url('../imagenes/mascara.svg');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 20px 20px;
+    padding-left: 24px;
+    display: flex;
+    flex-direction: columns;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.iconoArma{
+    background-image: url('../imagenes/arma.svg');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 20px 20px;
+    padding-left: 24px;
+    display: flex;
+    flex-direction: columns;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.iconoFuerza{
+    background-image: url('../imagenes/fuerza.svg');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 20px 20px;
+    padding-left: 24px;
+    display: flex;
+    flex-direction: columns;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.iconoEditorial{
+    background-image: url('../imagenes/editorial.svg');
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 20px 20px;
+    padding-left: 24px;
+    display: flex;
+    flex-direction: columns;
+    margin-bottom: 10px;
+    color: white;
+}
+
+label{
+    display: flex;
+    flex-direction: columns;
+    margin-bottom: 10px;
+    color: white;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+#divLoader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+.oculto{
+    display: none;
+}
