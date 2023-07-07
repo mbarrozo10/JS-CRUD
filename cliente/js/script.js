@@ -8,8 +8,10 @@ loader.classList.add("oculto");
 
 const $seccionTabla= document.getElementById("selTabla");
 let listaHeroes=[];
+let heroesbkp=[];
 let flag=true;
 let indice=0;
+
 
 const armasHeroes= armas;
 
@@ -20,7 +22,13 @@ function GetAnuncios (url) {
   .then((data) => {
     listaHeroes= data;
     $seccionTabla.appendChild(crearTabla(listaHeroes));
-    MapeadoPromedio(listaHeroes);
+    $seccionTabla.classList.add('text-center');
+    
+    heroesbkp= data;
+    MapeadoPromedio(heroesbkp);
+    MapeadoMaximo(heroesbkp);
+    MapeadoMimimo(heroesbkp);
+    CargarCheckBox();
     localStorage.setItem("Heroes",JSON.stringify(listaHeroes));
   })
   .catch((err) => {
@@ -48,44 +56,103 @@ function CargarSeccion(){
   });
 }
 
-function MapeadoPromedio(Heroes){
+function MapeadoMaximo(Heroes){
   let fuerza = [];
   
+  fuerza = Heroes.map(e=> parseInt(e.fuerza));
+
+  var sumaFuerza = fuerza.reduce(function(total, personaje) {
+    if(personaje > total){
+
+      return personaje;
+      
+    }
+    return total;
+  }, 0);
+
+  const txt= document.getElementById("maxima");
+  txt.value= sumaFuerza;
+}
+
+function MapeadoMimimo(Heroes){
+  let fuerza = [];
+  
+  fuerza = Heroes.map(e=> parseInt(e.fuerza));
+
+  var sumaFuerza = fuerza.reduce(function(total, personaje) {
+    if(personaje < total){
+
+      return personaje;
+      
+    }
+    return total;
+  }, fuerza[0]);
+
+  const txt= document.getElementById("minima");
+  txt.value= sumaFuerza;
+}
+
+function MapeadoPromedio(Heroes){
+  let fuerza = [];
+  console.log(Heroes);
   fuerza = Heroes.map(e=> parseInt(e.fuerza));
   var sumaFuerza = fuerza.reduce(function(total, fuerza) {
     return parseInt( total + fuerza);
   }, 0)
-  console.log(sumaFuerza);
   const promedio= sumaFuerza/Heroes.length;
 
   const txt= document.getElementById("promedio");
   txt.value= promedio;
 }
 const checkboxes = document.querySelectorAll('#mapeado input[type="checkbox"]');
-  console.log(checkboxes);
   checkboxes.forEach(e=> {e.addEventListener('change', filtrarAtributos) });
-  
+
+function CargarCheckBox(){
+  const check= JSON.parse(localStorage.getItem('check'));
+  if(check !==null){
+    checkboxes[0].checked = check[0];
+    checkboxes[1].checked = check[1];
+    checkboxes[2].checked = check[2];
+    checkboxes[3].checked = check[3];
+    checkboxes[4].checked = check[4];
+    filtrarAtributos();
+  }else{
+    checkboxes[0].checked = true;
+    checkboxes[1].checked = true;
+    checkboxes[2].checked = true;
+    checkboxes[3].checked = true;
+    checkboxes[4].checked = true;
+    filtrarAtributos();
+  }
+}
+
 function filtrarAtributos() {
-  console.log('filtrar atributo');
   const checkboxes = document.querySelectorAll('#mapeado input[type="checkbox"]');
+  let checks = [];
   let atributosSeleccionados = Array.from(checkboxes)
-    .filter(checkbox => checkbox.checked)
+    .filter(checkbox => {
+      checks.push(checkbox.checked);
+      return checkbox.checked
+    }
+    )
     .map(checkbox => checkbox.name);
     if (!atributosSeleccionados.includes('id')) {
       let array=[];
-      //array.push('id');
+      array.push('id');
       atributosSeleccionados.forEach(e =>{ array.push(e);});
       atributosSeleccionados = array;
     }
   
-  const resultado = listaHeroes.map(obj => {
+  const resultado = heroesbkp.map(obj => {
     const nuevoObjeto = {};
     atributosSeleccionados.forEach(atributo => {
       nuevoObjeto[atributo] = obj[atributo];
     });
     return nuevoObjeto;
   });
+  listaHeroes = resultado;
   actualizarTabla($seccionTabla, resultado);
+  localStorage.setItem("check", JSON.stringify(checks));
 }
 function FiltrarTransaccion() {
   let filtrados = [];
@@ -96,7 +163,7 @@ function FiltrarTransaccion() {
       return true;
     }else return rta.editorial == seleccion.value;
   });
-   MapeadoPromedio(filtrados);
+   //MapeadoPromedio(filtrados);
   actualizarTabla($seccionTabla,filtrados);
 }
 const seleccion = document.getElementById("Filtro");
@@ -114,6 +181,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
     GetAnuncios(URL);
     CargarSeccion();
+    
     formulario.addEventListener('submit', Manejador);
    
   });
@@ -164,7 +232,7 @@ window.addEventListener("click", (e) => {
       
       const id = e.target.parentElement.dataset.id;
       indice= id;
-      const anuncioSeleccionado = listaHeroes
+      const anuncioSeleccionado = heroesbkp
     .find((personaje) => personaje.id==id);
       CargarDatosSeleccionado(anuncioSeleccionado);
   }
@@ -192,7 +260,7 @@ function GuardarAnuncio() {
           transaccion= element.value;
       }
   });
-  if(nombre !="" && fuerza !=undefined && arma !=""){
+  if(nombre !="" && fuerza !=undefined && arma !="" && alias !=""){
     const personaje = new Superheroe(parseInt(id),nombre,fuerza,alias,transaccion,arma);
     AgregarAnuncio(personaje);
     LimpiarFormulario(id+1);
@@ -209,15 +277,11 @@ function AgregarAnuncio(Anuncio) {
   xhr.addEventListener("readystatechange",()=>{
     if(xhr.readyState == 4){
       if(xhr.status >= 200 && xhr.status< 300){
-        listaHeroes= JSON.parse(xhr.responseText);
-         actualizarTabla($seccionTabla,anuncios); 
+         actualizarTabla($seccionTabla,heroesbkp); 
       }else{
         console.error("Error: " + xhr.status + "-" + xhr.statusText);
       }
-
-      loader.classList.add("oculto");
     }
-
   });
   xhr.open("POST", URL)
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -239,7 +303,7 @@ function CargarDatosSeleccionado(anuncioSeleccionado){
         }
     }
     
-    if(anuncioSeleccionado.transaccion == "venta")
+    if(anuncioSeleccionado.editorial == "dc")
         {
             document.getElementById('rTransaccionVenta').checked = true;
           
@@ -252,10 +316,13 @@ function CargarDatosSeleccionado(anuncioSeleccionado){
     formulario.btnCancelar.disabled=false;
     formulario.btnCancelar.addEventListener('click',() => {
       LimpiarFormulario(0);
-    formulario.btnGuardar.value="Guardar";
-    formulario.btnBorrar.disabled=true;
-    formulario.btnCancelar.disabled=true;
-    })
+      formulario.btnGuardar.value="Guardar";
+      formulario.btnBorrar.disabled=true;
+      formulario.btnCancelar.disabled=true;});
+    formulario.btnBorrar.disabled= false
+    formulario.btnBorrar.addEventListener('click',() => {
+      BorrarAnuncio(anuncioSeleccionado, formulario);
+    });
     
 }
 
@@ -284,9 +351,8 @@ function LimpiarFormulario(id) {
 
 //Modifica el anuncio seleccionado en la tabla
 function ModificarAnuncio(formulario) {
-  console.log(indice);
 
-  const heroe= listaHeroes
+  const heroe= heroesbkp
   .find((personaje) => {
       if(personaje.id===parseInt(indice) ){
         personaje.nombre= formulario.txtTitulo.value;
@@ -318,7 +384,6 @@ function ModificarAnuncio(formulario) {
     const xhr = new XMLHttpRequest();
   xhr.addEventListener("readystatechange",()=>{
     if(xhr.readyState == 4){
-      console.log("volvi");
       loader.classList.add("oculto");
     }
   });
@@ -327,27 +392,28 @@ function ModificarAnuncio(formulario) {
 
   xhr.send(JSON.stringify(heroe));
 
-  actualizarTabla($seccionTabla,listaHeroes);
+  actualizarTabla($seccionTabla,heroesbkp);
     
     formulario.btnGuardar.value="Guardar";
 }
 
 //Borra el anuncio seleccionado en la tabla
 function BorrarAnuncio(anuncioBorrar, formulario){
-  let anunciosNuevo= [];
-  flag=true;
-  listaHeroes
-.forEach((personaje) => {
-      if(personaje.id!==anuncioBorrar.id){
-        anunciosNuevo.push(personaje);
+  const xhr = new XMLHttpRequest();
+  xhr.addEventListener("readystatechange",()=>{
+    if(xhr.readyState == 4){
+      if(xhr.status >= 200 && xhr.status< 300){
+         
+      }else{
+        console.error("Error: " + xhr.status + "-" + xhr.statusText);
       }
-    });
-  listaHeroes
-= anunciosNuevo;
-  actualizarTabla($seccionTabla,anunciosNuevo);
-  console.log(anunciosNuevo);
-  LimpiarFormulario(anunciosNuevo[anunciosNuevo.length - 1].id + 1)
+      loader.classList.add("oculto");
+    }
+  });
+  xhr.open("DELETE", URL + "/" + anuncioBorrar.id);
+  xhr.send();
   
+  formulario.btnBorrar.disabled = true;
   formulario.btnGuardar.value="Guardar";
   formulario.btnBorrar.disabled=true;
 }

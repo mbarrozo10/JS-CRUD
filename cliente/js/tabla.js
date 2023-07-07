@@ -13,8 +13,8 @@ export const crearTabla = (data) => {
     tabla.classList.add('table-dark');
     tabla.classList.add('table-responsive');
     tabla.classList.add('table-bordered');
-
-
+    tabla.classList.add('border-primary');
+    tabla.classList.add('text-center');
     return tabla;
 }
 
@@ -29,38 +29,37 @@ const CrearCabecera = (elemento) => {
         if(key != "id")
        { const th = document.createElement("th");
         th.textContent = key;
-        th.classList.add('col-md-4');
+        th.classList.add('col-sm-4');
         headrow.appendChild(th);}
     }
 
     thead.appendChild(headrow);
-
     thead.classList.add('text-center');
     thead.classList.add('text-capitalize');
-    thead.classList.add('thead-dark');
+
     return thead;
 };
 
 //Crea el cuerpo de la tabla con los datos pasados
 const CrearCuerpo= (data) => {
     const tbody = document.createElement("tbody");
-
     data.forEach(element => {
         const tr= document.createElement("tr");
         for(const key in element) {
             if(key ==="id"){
-                tr.dataset.id=element[key];
+               tr.dataset.id=element[key];
             }else{
             const td= document.createElement("td");
             td.textContent = element[key];
             td.classList.add('text-center');
-            td.classList.add('col-md-4');
+            td.classList.add('col-sm-4');
 
             tr.appendChild(td);
-            tr.classList.add('text-center');
+            // tr.classList.add('text-center');
             }
         }
         tbody.appendChild(tr);
+        tbody.classList.add('text-center');
 
     });
     return tbody;

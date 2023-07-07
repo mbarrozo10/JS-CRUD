@@ -20,7 +20,7 @@ ul a{
 nav ul li:hover{
     background-color: #242424;
     transition: 0.9s;
-}
+} 
 header{
     position: relative;
     left: 0;
@@ -33,8 +33,9 @@ header{
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 20px;
+    color: white;
 }
-/* footer{
+footer{
     background-color: white;
     left: 0px;
     bottom: 0px;
@@ -44,8 +45,8 @@ header{
     background-size: cover;
     position: relative;
     margin-top: -100;
-} */
-@media only screen and (max-width: 768px)
+}
+/* @media only screen and (max-width: 768px)
 {
     nav ul{
         height: 200px;
@@ -58,40 +59,52 @@ header{
     footer{
         height: 200px;
     }
-}
+} */
 
 
- #txtId,#txtTitulo,#txtDescripcion,#txtCantBaños,#txtCantAutos,#txtDormitorios, #arma, #fuerza{
+ #txtId,#txtTitulo,#txtDescripcion, #arma, #fuerza{
     margin-bottom: 10px;
     border-radius: 8px;
-    margin-right: 20px;
-    margin-left: 20px;
+    /* margin-right: 20px; */
+    /* margin-left: 20px; */
 } 
 
 #FieldTransaccion{
     color: white;
     border: none ;
     padding: 0;
-    display: flex ;
+    /* display: flex ;
     flex-direction: row;
-    align-items: center;
+    align-items: center; */
 }
-#rTransaccionVenta, #rTransaccionAlquiler{
+/* #rTransaccionVenta, #rTransaccionAlquiler{
     display: flex ;
     flex-direction: row;
     margin-right: 20px;
-}
+} */
 
-#legendaTrans{
+/* #legendaTrans{
     margin-bottom: 10px;
-}
+} */
 
-#formularioAlta, #selTabla{
+#formularioAlta{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: url("../imagenes/fondo.jpg");
+    background-size: cover;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom:20px;
 }
 
+#selTabla{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
 .content {
     min-height: calc(100% - 50px); /* Resta la altura del footer */
   padding-bottom: 50px; /* Altura del footer */
@@ -105,13 +118,13 @@ body{
     background-size: cover;
 }
 
-#FieldAlta{
+/* #FieldAlta{
     margin-bottom: 10px;
     border-radius: 20px;
     background-image: url("../imagenes/fondo.jpg");
     background-size: cover;
-    
-}
+    margin-left: 10px;
+} */
 
 
 
@@ -124,14 +137,14 @@ h1{
 
 
 
-table{
+/* table{
     border-collapse: collapse ;
     width: 80%;
     margin: 0 auto;
     
-}
+} */
 
-#btnGuardar,#btnMod,#btnBorrar, #btnCancelar{
+/* #btnGuardar,#btnMod,#btnBorrar, #btnCancelar{
     display: inline-block;
     flex-direction: column;
     align-items: center;
@@ -146,104 +159,79 @@ table{
     border-width: 1px;
     border-style: solid;
     border-radius:20px;
-}
+} */
 
 #btnGuardar{
-    margin-left: -5px;
+    /* margin-left: -5px; */
+    background-image: url('../imagenes/guardar.svg');
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: 20px 20px;
+  /* margin-left: 20px; */
+  padding-left: 24px;
 }
-/* thead{
-    background-color: rgb(77, 14, 14);
-}
-th, td{
-    border: 1px solid white ;
-    width:100px;
-    height:28px;
-    line-height:28px;
-    padding:0 8px;
-    color: white;
-}
-td{
-    background-color: #276d9c;
-} */
-
-
-/* 
-
-#selTabla{
-    display: none;
-    text-align: center;
-} */
-
 .Fichas{
     background-color: rgb(110, 21, 21) ;
     width: 200ox;
     margin-bottom: 10px;
 }
-
-.iconoGuardar{
-    background-image: url('../imagenes/guardar.svg');
-  background-repeat: no-repeat;
-  background-position: left;
-  background-size: 20px 20px;
-  margin-left: 20px;
-  padding-left: 24px;
-}
-.iconoAlias{
+  
+#iconoAlias{
     background-image: url('../imagenes/mascara.svg');
     background-repeat: no-repeat;
     background-position: left;
     background-size: 20px 20px;
     padding-left: 24px;
-    display: flex;
+    /* display: flex;
     flex-direction: columns;
     margin-bottom: 10px;
-    color: white;
+    color: white; */
 }
 
-.iconoArma{
+#iconoArma{
     background-image: url('../imagenes/arma.svg');
     background-repeat: no-repeat;
     background-position: left center;
     background-size: 20px 20px;
     padding-left: 24px;
-    display: flex;
+    /* display: flex;
     flex-direction: columns;
     margin-bottom: 10px;
-    color: white;
+    color: white; */
 }
 
-.iconoFuerza{
+#iconoFuerza{
     background-image: url('../imagenes/fuerza.svg');
     background-repeat: no-repeat;
     background-position: left center;
     background-size: 20px 20px;
     padding-left: 24px;
-    display: flex;
+    /* display: flex;
     flex-direction: columns;
     margin-bottom: 10px;
-    color: white;
+    color: white; */
 }
 
-.iconoEditorial{
+#legendaTrans{
     background-image: url('../imagenes/editorial.svg');
     background-repeat: no-repeat;
     background-position: left center;
     background-size: 20px 20px;
     padding-left: 24px;
-    display: flex;
+    /* display: flex;
     flex-direction: columns;
     margin-bottom: 10px;
-    color: white;
+    color: white; */
 }
 
-label{
+/* label{
     display: flex;
     flex-direction: columns;
     margin-bottom: 10px;
     color: white;
     margin-right: 20px;
     margin-left: 20px;
-}
+} */
 
 #divLoader{
     display: flex;
@@ -255,3 +243,7 @@ label{
 .oculto{
     display: none;
 }
+
+/* #Filtro{
+    height: 30px;
+} */

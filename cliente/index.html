@@ -8,102 +8,152 @@
 
     <link  rel="stylesheet" href="css/estilos.css">
     <script src="js/script.js" type="module" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
     <title>Primer Parcial</title>
 </head>
 <body>
     <header>
-       <img src="imagenes/logo.png" id="logo"> 
-       <nav id="nav">
-        <ul>
-            <li><a id="home">Home</a></li>
-            <li><a id="personajes">Personajes</a></li>
-            <li><a>Blog</a></li>
-            <li><a>Contacto</a></li>
-        </ul>
-    </nav>
-
+        <img src="imagenes/logo.png" id="logo"> 
+        <nav class="navbar navbar-expand-md navbar-dark" id="nav">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#header" aria-controls="header" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="header">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item"><a class="nav-link active" id="home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" id="personajes">Personajes</a></li>
+                        <li class="nav-item"><a class="nav-link active">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link active">Contacto</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-    <form id="formularioAlta">  
-        <fieldset id="FieldAlta">
-            <legend>
-                <label>Informacion del superheroe</label>
-            </legend>
-            <label >Nombre</label>
-            <input type="text" id="txtTitulo" placeholder="  Nombre">
-            
-            <fieldset id="FieldTransaccion">
-                <div class="container">
-                <legend class="iconoEditorial" id="legendaTrans" >Editorial</legend>
-                <div class="row">
-                    <div class="col-3">
-                <label for="rTransaccionVenta" >DC</label>
-                <input type="radio" name="transaccion" value="dc" checked id="rTransaccionVenta" >
-            </div><div class="col-3">
-                <label for="rTransaccionAlquiler" >Marvel</label>
-                <input type="radio" name="transaccion" value="marvel"  id="rTransaccionAlquiler">
-            </div>
-            </div>
-            </div>
-            </fieldset>
-
-            <label class="iconoAlias" >Alias</label>
-            <input type="text" id="txtDescripcion" placeholder="  Alias">
-
-            <label class="iconoArma" >Arma</label>
-            <select name="Arma" id="arma"></select>
-
-            <label class="iconoFuerza">Fuerza</label>
-            <input type="range" id="fuerza"  min="0" max="100" step="1">
-        </fieldset>
-    <div id="botones">
-       
-        <input class="iconoGuardar" type="submit" id="btnGuardar" value="Guardar"  >
    
-        <!-- <input type="button" id="btnBorrar" value="Borrar" disabled="true"> -->
-        <input type="button" id="btnCancelar" value="Cancelar" disabled="true">
-    </div>
-    </form>
     <div class="container">
-        <div class="row">
-            <div class="col-lg-1">
-            <label >Filtar</label>
-            <select name="Filtro" id="Filtro"></select>
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-4">
+                <div class="well well-sm">
+                    <form id="formularioAlta">  
+                        <!-- <fieldset id="FieldAlta"> -->
+                            
+                            <legend class="text-center header text-white">
+                                Informacion del superheroe
+                            </legend>
+                            <div class="form-group">
+                                
+                                <div class="col-md-12 text-center">   
+                                    <label class="text-white " id="txtNombre" for="txtTitulo">Nombre</label>
+                                </div>
+                                <div class="col-md-12 text-center">   
+                                    <input class="form-control-sm"  type="text" id="txtTitulo" placeholder="Nombre">
+                                </div>
+                            </div>
+                            
+                            <fieldset class="form-group" id="FieldTransaccion">
+                                <div class="col-md-12 text-center"> 
+                                    <label class="iconoEditorial" id="legendaTrans" >Editorial</label>
+                                </div>
+                                    <!-- <div class="row"> -->
+                                    <div class="form-check form-check-inline">
+                                        <label for="rTransaccionVenta" >DC</label>
+                                        <input class="text-center" type="radio" name="transaccion" value="dc" checked id="rTransaccionVenta" >
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <label for="rTransaccionAlquiler" >Marvel</label>
+                                        <input class="text-center" type="radio" name="transaccion" value="marvel"  id="rTransaccionAlquiler">
+                                    </div>
+                                    <!-- </div> -->
+                                
+                            </fieldset>
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">   
+                                    <label class="text-white" id="iconoAlias" >Alias</label>
+                                </div>
+                                    <div class="col-md-12 text-center">   
+                                    <input class="form-control-sm" type="text" id="txtDescripcion" placeholder="Alias">
+                                </div>
+                            </div>
+                            <div class="row text-center"> 
+                                
+                                <div class="form-group col-lg-6">     
+                                        <label for="arma" class="text-white" id="iconoArma" >Arma</label>
+                                        <select name="Arma" id="arma"></select>
+                                </div>
+                                <div class="form-group col-lg-6">    
+                                    <label class="text-white" for="fuerza" id="iconoFuerza">Fuerza</label>
+                                    <input class="form-range" type="range" id="fuerza"  min="0" max="100" step="1">
+                                </div>
+                            </div>
+                        <!-- </fieldset> -->
+                        <div class="form-group" id="botones">
+                            <div class="col-md-12 text-center">
+                                <!-- <input class="iconoGuardar" type="submit" id="btnGuardar" value="Guardar"  > -->
+                                <input class="btn btn-primary rounded-pill" type="submit" id="btnGuardar" value="Guardar"  >
+                                <input class="btn btn-danger rounded-pill" type="button" id="btnBorrar" value="Borrar" disabled="true">
+
+                                <input class="btn btn-secondary rounded-pill" type="button" id="btnCancelar" value="Cancelar" disabled="true">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="col-lg-1">
+    </div>
+
+    <div class="container">
+        <div class="row bg-primary">
+        <div class="col-lg-2">
+            <label >Filtar</label>
+            <select class="btn btn-secondary dropdown-toggle" name="Filtro" id="Filtro"></select>
+            </div>
+        <div class="col-lg-3">
             <label >Promedio</label>
             <input type="text" placeholder="0" id="promedio" readonly >
+        </div>
+        <div class="col-lg-3">
+            <label >Maxima</label>
+            <input type="text" placeholder="0" id="maxima" readonly >
+            </div>
+        <div class="col-lg-3">
+            <label >Minima</label>
+            <input type="text" placeholder="0" id="minima" readonly >
         </div>
         </div>
     </div>
     <div class="container" id="mapeado">
-        <div class="row">
-            <div class="col">
+        <div class="row bg-primary">
+            <div class="col-md-2">
                 <label >Nombre</label>
-                <input type="checkbox"  checked id="chkTitulo" name="nombre">
+                <input type="checkbox"   id="chkTitulo" name="nombre">
             </div>
-            <div class="col">
-                <label >Alias</label>
-                <input type="checkbox"  checked id="chkTransaccion" name="alias">
-            </div>
-            <div class="col">
-                <label >Editorial</label>
-                <input  type="checkbox" checked id="chkDescripcion" name="editorial">
-            </div>
-            <div class="col">
+            <div class="col-md-2">
                 <label >Fuerza</label>
-                <input  type="checkbox" checked id="chkPrecio" name="fuerza">
+                <input  type="checkbox"  id="chkPrecio" name="fuerza">
             </div>
-            <div class="col">
+            <div class="col-md-2">
+                <label >Alias</label>
+                <input type="checkbox"   id="chkTransaccion" name="alias">
+            </div>
+            <div class="col-md-2">
+                <label >Editorial</label>
+                <input  type="checkbox"  id="chkDescripcion" name="editorial">
+            </div>
+            
+            <div class="col-md-2">
                 <label >Arma</label>
-                <input type="checkbox"  checked id="chkBaños" name="arma">
+                <input type="checkbox"   id="chkBaños" name="arma">
             </div>
         </div>
     </div>
-        <div class="container"  id="divLoader">
-            <img src="./imagenes/super.gif" class="oculto" id="loader">
-        </div>
-
-        <div class="container" id="selTabla"></div>
+    <div class="container"  id="divLoader">
+        <img src="./imagenes/super.gif" class="oculto" id="loader">
+    </div>
+    <div class="container">
+        <div class="col-12" id="selTabla"></div>   
+    </div>
    <footer class="bg-dark text-center text-white">
     <nav >
         <ul>
